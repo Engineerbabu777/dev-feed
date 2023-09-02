@@ -2,14 +2,15 @@
 
 import React from 'react'
 
-type Props ={
- children: React.ReactNode
+type Props = {
+  children: React.ReactNode;
+  noPadding?:boolean;
 
 }
 
-function Card({children}:Props) {
+function Card({ children, noPadding=false }: Props) {
   return (
-    <div className="bg-white p-2 shadow-md shadow-gray-300 mb-4 rounded-sm ">{children}</div>
+    <div className={"bg-white shadow-md shadow-gray-300 mb-4 rounded-md "+(noPadding? ' p-0 ':' p-2 ')}>{children}</div>
   )
 }
 
