@@ -1,7 +1,7 @@
 
 
 type Props = {
- big:boolean;
+ big?:boolean;
 }
 
 export default function Avatar({ big=false}: Props) {
@@ -9,7 +9,7 @@ export default function Avatar({ big=false}: Props) {
 
     return (<>
 
-        <div className={" rounded-full overflow-hidden "+(big? ' w-24 h-24 ' : ' w-12 h-12')}>
+        <div className={" rounded-full overflow-hidden "+(big? ' w-32 h-32 ' : ' w-12 h-12')}>
             <img src={"/user-1.avif"} alt={"text"} className="" />
         </div>
 
