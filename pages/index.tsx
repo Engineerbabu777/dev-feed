@@ -13,10 +13,10 @@ export default function Page({ }) {
   return (<>
 
 
-<Layout>
-        <PostFormCard />
-        <PostCard />
-</Layout>
+    <Layout>
+      <PostFormCard />
+      <PostCard />
+    </Layout>
 
   </>);
 
