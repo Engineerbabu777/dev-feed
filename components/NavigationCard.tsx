@@ -1,4 +1,5 @@
 
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import Card from './Cart';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
@@ -8,12 +9,14 @@ export default function NavigationCard({}) {
 
   const router = useRouter();
 
-  console.log(router.pathname.split('/').length);
-
-
   const activeNav = 'flex gap-3 py-3 -mx-8 px-8 bg-[#2191FA] rounded-md shadow-md shadow-gray-300 text-white';
   const unactiveNav = 'flex gap-3 py-2 my-2 transition-all hover:scale-110 hover:bg-blue-300 hover:bg-opacity-30 -mx-4 px-4 hover:shadow-gray-300 hover:shadow-md ';
 
+  const supabase = useSupabaseClient();
+
+  const signOut = async() => {
+     await supabase.auth.signOut();
+  }
 
     return(<>
          <Card>
@@ -36,11 +39,11 @@ export default function NavigationCard({}) {
               <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
             </svg>
             Notifications</Link>
-          <Link href="" className={unactiveNav}>
+          <button type="button" onClick={signOut} className={unactiveNav+" w-full"}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
             </svg>
-            Logout</Link>
+            Logout</button>
             </div>
         </Card>
     </>)

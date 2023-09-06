@@ -1,5 +1,8 @@
 
 import NavigationCard from '@/components/NavigationCard';
+import { useSession } from '@supabase/auth-helpers-react';
+import { useRouter } from 'next/router';
+import Login from './Login';
 
 
 type Props ={
@@ -8,6 +11,16 @@ type Props ={
 
 export default function Layout({children}:Props) {
 
+
+  
+  const router = useRouter();
+  const session= useSession();
+
+  
+  
+  if(!session){
+    return <Login />
+  }
 
 
     return(<>
